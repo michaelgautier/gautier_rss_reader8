@@ -10,46 +10,46 @@ VPATH = @srcdir@
 bin_PROGRAMS = newsdownld rss_io_test gautierrss
 
 iconH1dir = $(datadir)/icons/HighContrast/16x16/apps/
-iconH1_DATA = desktop/icons/newsreader.png
+dist_iconH1_DATA = desktop/icons/newsreader.png
 
 iconH2dir = $(datadir)/icons/HighContrast/16x16/apps/
-iconH2_DATA = desktop/icons/newsreader.png
+dist_iconH2_DATA = desktop/icons/newsreader.png
 
 iconH3dir = $(datadir)/icons/HighContrast/22x22/apps/
-iconH3_DATA = desktop/icons/newsreader.png
+dist_iconH3_DATA = desktop/icons/newsreader.png
 
 iconH4dir = $(datadir)/icons/HighContrast/24x24/apps/
-iconH4_DATA = desktop/icons/newsreader.png
+dist_iconH4_DATA = desktop/icons/newsreader.png
 
 iconH5dir = $(datadir)/icons/HighContrast/256x256/apps/
-iconH5_DATA = desktop/icons/newsreader.png
+dist_iconH5_DATA = desktop/icons/newsreader.png
 
 iconH6dir = $(datadir)/icons/HighContrast/32x32/apps/
-iconH6_DATA = desktop/icons/newsreader.png
+dist_iconH6_DATA = desktop/icons/newsreader.png
 
 iconH7dir = $(datadir)/icons/HighContrast/48x48/apps/
-iconH7_DATA = desktop/icons/newsreader.png
+dist_iconH7_DATA = desktop/icons/newsreader.png
 
 iconC1dir = $(datadir)/icons/hicolor/128x128/apps/
-iconC1_DATA = desktop/icons/newsreader.png
+dist_iconC1_DATA = desktop/icons/newsreader.png
 
 iconC2dir = $(datadir)/icons/hicolor/16x16/apps/
-iconC2_DATA = desktop/icons/newsreader.png
+dist_iconC2_DATA = desktop/icons/newsreader.png
 
 iconC3dir = $(datadir)/icons/hicolor/32x32/apps/
-iconC3_DATA = desktop/icons/newsreader.png
+dist_iconC3_DATA = desktop/icons/newsreader.png
 
 iconC4dir = $(datadir)/icons/hicolor/48x48/apps/
-iconC4_DATA = desktop/icons/newsreader.png
+dist_iconC4_DATA = desktop/icons/newsreader.png
 
 iconC5dir = $(datadir)/icons/hicolor/64x64/apps/
-iconC5_DATA = desktop/icons/newsreader.png
+dist_iconC5_DATA = desktop/icons/newsreader.png
 
 pixmapdir = $(datadir)/pixmaps/newsreader.xpm
-pixmap_DATA = desktop/pixmaps/newsreader.xpm
+dist_pixmap_DATA = desktop/pixmaps/newsreader.xpm
 
 appdatadir = ${datadir}/desktop/
-appdata_DATA = desktop/newsreader.appdata.xml
+dist_appdata_DATA = desktop/newsreader.appdata.xml
 
 #############
 #############  DEPENDENT OBJECTS //////////////////////////////////////////
