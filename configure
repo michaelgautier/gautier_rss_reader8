@@ -18856,8 +18856,6 @@ then :
 
 fi
 
-#AC_SEARCH_LIBS( gthread-2.0 --libs)
-
 
 #Custom Functionality
 ACFLAGS="`pkg-config gio-2.0 --cflags`"
@@ -18869,7 +18867,6 @@ ACFLAGS="${ACFLAGS} `pkg-config sqlite3 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config libcurl --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config webkit2gtk-4.0 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config libxml-2.0 --cflags`"
-# $(pkg-config gthread-2.0 --cflags)
 
 CFLAGS="${CFLAGS} ${ACFLAGS}"
 CPPFLAGS="${CPPFLAGS} ${ACFLAGS}"

@@ -14,6 +14,7 @@
 
 @SET_MAKE@
 
+
 am__is_gnu_make = { \
   if test -z '$(MAKELEVEL)'; then \
     false; \
@@ -105,7 +106,14 @@ mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdatadir)" \
+	"$(DESTDIR)$(iconC1dir)" "$(DESTDIR)$(iconC2dir)" \
+	"$(DESTDIR)$(iconC3dir)" "$(DESTDIR)$(iconC4dir)" \
+	"$(DESTDIR)$(iconC5dir)" "$(DESTDIR)$(iconH1dir)" \
+	"$(DESTDIR)$(iconH2dir)" "$(DESTDIR)$(iconH3dir)" \
+	"$(DESTDIR)$(iconH4dir)" "$(DESTDIR)$(iconH5dir)" \
+	"$(DESTDIR)$(iconH6dir)" "$(DESTDIR)$(iconH7dir)" \
+	"$(DESTDIR)$(pixmapdir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am_gautierrss_OBJECTS =  \
@@ -252,6 +260,37 @@ am__can_run_installinfo = \
     n|no|NO) false;; \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
+am__vpath_adj_setup = srcdirstrip=`echo "$(srcdir)" | sed 's|.|.|g'`;
+am__vpath_adj = case $$p in \
+    $(srcdir)/*) f=`echo "$$p" | sed "s|^$$srcdirstrip/||"`;; \
+    *) f=$$p;; \
+  esac;
+am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
+am__install_max = 40
+am__nobase_strip_setup = \
+  srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*|]/\\\\&/g'`
+am__nobase_strip = \
+  for p in $$list; do echo "$$p"; done | sed -e "s|$$srcdirstrip/||"
+am__nobase_list = $(am__nobase_strip_setup); \
+  for p in $$list; do echo "$$p $$p"; done | \
+  sed "s| $$srcdirstrip/| |;"' / .*\//!s/ .*/ ./; s,\( .*\)/[^/]*$$,\1,' | \
+  $(AWK) 'BEGIN { files["."] = "" } { files[$$2] = files[$$2] " " $$1; \
+    if (++n[$$2] == $(am__install_max)) \
+      { print $$2, files[$$2]; n[$$2] = 0; files[$$2] = "" } } \
+    END { for (dir in files) print dir, files[dir] }'
+am__base_list = \
+  sed '$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;$$!N;s/\n/ /g' | \
+  sed '$$!N;$$!N;$$!N;$$!N;s/\n/ /g'
+am__uninstall_files_from_dir = { \
+  test -z "$$files" \
+    || { test ! -d "$$dir" && test ! -f "$$dir" && test ! -r "$$dir"; } \
+    || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
+         $(am__cd) "$$dir" && rm -f $$files; }; \
+  }
+DATA = $(appdata_DATA) $(iconC1_DATA) $(iconC2_DATA) $(iconC3_DATA) \
+	$(iconC4_DATA) $(iconC5_DATA) $(iconH1_DATA) $(iconH2_DATA) \
+	$(iconH3_DATA) $(iconH4_DATA) $(iconH5_DATA) $(iconH6_DATA) \
+	$(iconH7_DATA) $(pixmap_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP) \
 	config.h.in
 # Read a list of newline-separated strings from the standard input,
@@ -419,6 +458,34 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 ACLOCAL_AMFLAGS = -I m4
+iconH1dir = $(datadir)/icons/HighContrast/16x16/apps/
+iconH1_DATA = desktop/icons/newsreader.png
+iconH2dir = $(datadir)/icons/HighContrast/16x16/apps/
+iconH2_DATA = desktop/icons/newsreader.png
+iconH3dir = $(datadir)/icons/HighContrast/22x22/apps/
+iconH3_DATA = desktop/icons/newsreader.png
+iconH4dir = $(datadir)/icons/HighContrast/24x24/apps/
+iconH4_DATA = desktop/icons/newsreader.png
+iconH5dir = $(datadir)/icons/HighContrast/256x256/apps/
+iconH5_DATA = desktop/icons/newsreader.png
+iconH6dir = $(datadir)/icons/HighContrast/32x32/apps/
+iconH6_DATA = desktop/icons/newsreader.png
+iconH7dir = $(datadir)/icons/HighContrast/48x48/apps/
+iconH7_DATA = desktop/icons/newsreader.png
+iconC1dir = $(datadir)/icons/hicolor/128x128/apps/
+iconC1_DATA = desktop/icons/newsreader.png
+iconC2dir = $(datadir)/icons/hicolor/16x16/apps/
+iconC2_DATA = desktop/icons/newsreader.png
+iconC3dir = $(datadir)/icons/hicolor/32x32/apps/
+iconC3_DATA = desktop/icons/newsreader.png
+iconC4dir = $(datadir)/icons/hicolor/48x48/apps/
+iconC4_DATA = desktop/icons/newsreader.png
+iconC5dir = $(datadir)/icons/hicolor/64x64/apps/
+iconC5_DATA = desktop/icons/newsreader.png
+pixmapdir = $(datadir)/pixmaps/newsreader.xpm
+pixmap_DATA = desktop/pixmaps/newsreader.xpm
+appdatadir = ${datadir}/desktop/
+appdata_DATA = desktop/newsreader.appdata.xml
 
 #############
 #############  News Downloader //////////////////////////////////////////
@@ -1386,6 +1453,300 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
+install-appdataDATA: $(appdata_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(appdata_DATA)'; test -n "$(appdatadir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(appdatadir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(appdatadir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(appdatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(appdatadir)" || exit $$?; \
+	done
+
+uninstall-appdataDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(appdata_DATA)'; test -n "$(appdatadir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(appdatadir)'; $(am__uninstall_files_from_dir)
+install-iconC1DATA: $(iconC1_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconC1_DATA)'; test -n "$(iconC1dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconC1dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconC1dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconC1dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconC1dir)" || exit $$?; \
+	done
+
+uninstall-iconC1DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconC1_DATA)'; test -n "$(iconC1dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconC1dir)'; $(am__uninstall_files_from_dir)
+install-iconC2DATA: $(iconC2_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconC2_DATA)'; test -n "$(iconC2dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconC2dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconC2dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconC2dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconC2dir)" || exit $$?; \
+	done
+
+uninstall-iconC2DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconC2_DATA)'; test -n "$(iconC2dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconC2dir)'; $(am__uninstall_files_from_dir)
+install-iconC3DATA: $(iconC3_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconC3_DATA)'; test -n "$(iconC3dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconC3dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconC3dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconC3dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconC3dir)" || exit $$?; \
+	done
+
+uninstall-iconC3DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconC3_DATA)'; test -n "$(iconC3dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconC3dir)'; $(am__uninstall_files_from_dir)
+install-iconC4DATA: $(iconC4_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconC4_DATA)'; test -n "$(iconC4dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconC4dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconC4dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconC4dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconC4dir)" || exit $$?; \
+	done
+
+uninstall-iconC4DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconC4_DATA)'; test -n "$(iconC4dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconC4dir)'; $(am__uninstall_files_from_dir)
+install-iconC5DATA: $(iconC5_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconC5_DATA)'; test -n "$(iconC5dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconC5dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconC5dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconC5dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconC5dir)" || exit $$?; \
+	done
+
+uninstall-iconC5DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconC5_DATA)'; test -n "$(iconC5dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconC5dir)'; $(am__uninstall_files_from_dir)
+install-iconH1DATA: $(iconH1_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconH1_DATA)'; test -n "$(iconH1dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconH1dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconH1dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconH1dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconH1dir)" || exit $$?; \
+	done
+
+uninstall-iconH1DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconH1_DATA)'; test -n "$(iconH1dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconH1dir)'; $(am__uninstall_files_from_dir)
+install-iconH2DATA: $(iconH2_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconH2_DATA)'; test -n "$(iconH2dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconH2dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconH2dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconH2dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconH2dir)" || exit $$?; \
+	done
+
+uninstall-iconH2DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconH2_DATA)'; test -n "$(iconH2dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconH2dir)'; $(am__uninstall_files_from_dir)
+install-iconH3DATA: $(iconH3_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconH3_DATA)'; test -n "$(iconH3dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconH3dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconH3dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconH3dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconH3dir)" || exit $$?; \
+	done
+
+uninstall-iconH3DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconH3_DATA)'; test -n "$(iconH3dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconH3dir)'; $(am__uninstall_files_from_dir)
+install-iconH4DATA: $(iconH4_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconH4_DATA)'; test -n "$(iconH4dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconH4dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconH4dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconH4dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconH4dir)" || exit $$?; \
+	done
+
+uninstall-iconH4DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconH4_DATA)'; test -n "$(iconH4dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconH4dir)'; $(am__uninstall_files_from_dir)
+install-iconH5DATA: $(iconH5_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconH5_DATA)'; test -n "$(iconH5dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconH5dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconH5dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconH5dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconH5dir)" || exit $$?; \
+	done
+
+uninstall-iconH5DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconH5_DATA)'; test -n "$(iconH5dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconH5dir)'; $(am__uninstall_files_from_dir)
+install-iconH6DATA: $(iconH6_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconH6_DATA)'; test -n "$(iconH6dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconH6dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconH6dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconH6dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconH6dir)" || exit $$?; \
+	done
+
+uninstall-iconH6DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconH6_DATA)'; test -n "$(iconH6dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconH6dir)'; $(am__uninstall_files_from_dir)
+install-iconH7DATA: $(iconH7_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(iconH7_DATA)'; test -n "$(iconH7dir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(iconH7dir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(iconH7dir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(iconH7dir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(iconH7dir)" || exit $$?; \
+	done
+
+uninstall-iconH7DATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(iconH7_DATA)'; test -n "$(iconH7dir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(iconH7dir)'; $(am__uninstall_files_from_dir)
+install-pixmapDATA: $(pixmap_DATA)
+	@$(NORMAL_INSTALL)
+	@list='$(pixmap_DATA)'; test -n "$(pixmapdir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(pixmapdir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(pixmapdir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(pixmapdir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(pixmapdir)" || exit $$?; \
+	done
+
+uninstall-pixmapDATA:
+	@$(NORMAL_UNINSTALL)
+	@list='$(pixmap_DATA)'; test -n "$(pixmapdir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(pixmapdir)'; $(am__uninstall_files_from_dir)
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
@@ -1625,9 +1986,9 @@ distcleancheck: distclean
 	       exit 1; } >&2
 check-am: all-am
 check: check-am
-all-am: Makefile $(PROGRAMS) config.h
+all-am: Makefile $(PROGRAMS) $(DATA) config.h
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(iconC1dir)" "$(DESTDIR)$(iconC2dir)" "$(DESTDIR)$(iconC3dir)" "$(DESTDIR)$(iconC4dir)" "$(DESTDIR)$(iconC5dir)" "$(DESTDIR)$(iconH1dir)" "$(DESTDIR)$(iconH2dir)" "$(DESTDIR)$(iconH3dir)" "$(DESTDIR)$(iconH4dir)" "$(DESTDIR)$(iconH5dir)" "$(DESTDIR)$(iconH6dir)" "$(DESTDIR)$(iconH7dir)" "$(DESTDIR)$(pixmapdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -1737,7 +2098,11 @@ info: info-am
 
 info-am:
 
-install-data-am:
+install-data-am: install-appdataDATA install-iconC1DATA \
+	install-iconC2DATA install-iconC3DATA install-iconC4DATA \
+	install-iconC5DATA install-iconH1DATA install-iconH2DATA \
+	install-iconH3DATA install-iconH4DATA install-iconH5DATA \
+	install-iconH6DATA install-iconH7DATA install-pixmapDATA
 
 install-dvi: install-dvi-am
 
@@ -1819,7 +2184,12 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS
+uninstall-am: uninstall-appdataDATA uninstall-binPROGRAMS \
+	uninstall-iconC1DATA uninstall-iconC2DATA uninstall-iconC3DATA \
+	uninstall-iconC4DATA uninstall-iconC5DATA uninstall-iconH1DATA \
+	uninstall-iconH2DATA uninstall-iconH3DATA uninstall-iconH4DATA \
+	uninstall-iconH5DATA uninstall-iconH6DATA uninstall-iconH7DATA \
+	uninstall-pixmapDATA
 
 .MAKE: all install-am install-strip
 
@@ -1831,16 +2201,25 @@ uninstall-am: uninstall-binPROGRAMS
 	distclean-compile distclean-generic distclean-hdr \
 	distclean-libtool distclean-tags distcleancheck distdir \
 	distuninstallcheck dvi dvi-am html html-am info info-am \
-	install install-am install-binPROGRAMS install-data \
-	install-data-am install-dvi install-dvi-am install-exec \
-	install-exec-am install-html install-html-am install-info \
-	install-info-am install-man install-pdf install-pdf-am \
-	install-ps install-ps-am install-strip installcheck \
-	installcheck-am installcheck-binPROGRAMS installdirs \
-	maintainer-clean maintainer-clean-generic mostlyclean \
-	mostlyclean-compile mostlyclean-generic mostlyclean-libtool \
-	pdf pdf-am ps ps-am tags tags-am uninstall uninstall-am \
-	uninstall-binPROGRAMS
+	install install-am install-appdataDATA install-binPROGRAMS \
+	install-data install-data-am install-dvi install-dvi-am \
+	install-exec install-exec-am install-html install-html-am \
+	install-iconC1DATA install-iconC2DATA install-iconC3DATA \
+	install-iconC4DATA install-iconC5DATA install-iconH1DATA \
+	install-iconH2DATA install-iconH3DATA install-iconH4DATA \
+	install-iconH5DATA install-iconH6DATA install-iconH7DATA \
+	install-info install-info-am install-man install-pdf \
+	install-pdf-am install-pixmapDATA install-ps install-ps-am \
+	install-strip installcheck installcheck-am \
+	installcheck-binPROGRAMS installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am uninstall-appdataDATA \
+	uninstall-binPROGRAMS uninstall-iconC1DATA \
+	uninstall-iconC2DATA uninstall-iconC3DATA uninstall-iconC4DATA \
+	uninstall-iconC5DATA uninstall-iconH1DATA uninstall-iconH2DATA \
+	uninstall-iconH3DATA uninstall-iconH4DATA uninstall-iconH5DATA \
+	uninstall-iconH6DATA uninstall-iconH7DATA uninstall-pixmapDATA
 
 .PRECIOUS: Makefile
 
