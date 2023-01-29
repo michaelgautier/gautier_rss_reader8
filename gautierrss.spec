@@ -18,7 +18,7 @@ BuildRequires:	pkgconfig(libcurl)
 BuildRequires:	pkgconfig(webkit2gtk-4.0)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:  pkgconfig(appstream-glib)
-Requires:	gtk3 sqlite curl webkit2gtk4.0 xml2
+Requires:	gtk3 sqlite curl webkit2gtk4.0 libxml2
 
 %description
 Shows Internet feeds in a clean and obvious way. Comes with a screen that helps  
