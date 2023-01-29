@@ -2,7 +2,7 @@
 Type=Application
 Categories=Network;WebBrowser;Office;
 Name=Gautier RSS Reader
-Exec=newsreader
+Exec=gautierrss
 Terminal=false
 Icon=newsreader
 Comment=Shows RSS/Atom feeds in a simple and clean window

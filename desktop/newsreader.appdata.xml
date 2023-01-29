@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2020 Michael Gautier <michaelgautier.wordpress.com> -->
 <component type="desktop-application">
-  <id>michael.gautier.rss.v7</id>
+  <id>michael.gautier.rss.v8</id>
   <metadata_license>FSFAP</metadata_license>
   <project_license>LGPL-2.1+</project_license>
   <name>Gautier RSS</name>
@@ -36,7 +36,7 @@
   <url type="homepage">https://michaelgautier.github.io/gautier_rss_reader7</url>
   <developer_name>Michael Gautier</developer_name>
   <provides>
-    <binary>newsreader</binary>
+    <binary>gautierrss</binary>
   </provides>
   <releases>
     <release version="7.0.8" date="2020-01-27">
