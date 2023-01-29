@@ -14,10 +14,6 @@
     <ul>
       <li>Feed providers prefer their site is accessed no earlier than once per hour.</li>
       <li>The program respects those conditions by default.</li>
-      <li>This version 7 has no public predecessors with an installation package.</li>
-      <li>Previous versions existed on the Internet in source code form.</li>
-      <li>Earlier versions exist that were not packaged for installation.</li>
-      <li>Version 7 is the first Gautier RSS program packaged for installation.</li>
     </ul>
   </description>
   <launchable type="desktop-id">newsreader.desktop</launchable>
@@ -33,7 +29,7 @@
       <image>http://somesite.com/someimage-next2.png</image>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://michaelgautier.github.io/gautier_rss_reader7</url>
+  <url type="homepage">https://github.com/michaelgautier</url>
   <developer_name>Michael Gautier</developer_name>
   <provides>
     <binary>gautierrss</binary>
@@ -42,6 +38,11 @@
     <release version="7.0.8" date="2020-01-27">
       <description>
         <p>Initial public release</p>
+      </description>
+    </release>
+    <release version="8.0.0" date="2023-01-29">
+      <description>
+        <p>Uses Autotools build system</p>
       </description>
     </release>
   </releases>
