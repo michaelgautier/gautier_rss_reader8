@@ -45,11 +45,8 @@ dist_iconC5_DATA = desktop/icons/hicolor/128x128/apps/gautierrss.png
 pixmapdir = $(datadir)/pixmaps/gautierrss.xpm
 dist_pixmap_DATA = desktop/pixmaps/gautierrss.xpm
 
-appdata1dir = ${datadir}/desktop/
-dist_appdata1_DATA = desktop/gautierrss.appdata.xml
-
-appdata2dir = ${datadir}/metainfo/
-dist_appdata2_DATA = desktop/gautierrss.appdata.xml
+appdatadir = ${datadir}/desktop/
+dist_appdata_DATA = desktop/gautierrss.appdata.xml
 
 #Majority of this file was put together in Fedora 37 environment.
 #Important ... Debian related insight
