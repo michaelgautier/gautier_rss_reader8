@@ -1,7 +1,7 @@
 #                                               -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
 
-AC_PREREQ([2.71])
+AC_PREREQ([2.69])
 AC_INIT([gautierrss], [8.0.0], [mklinfinity@proton.me])
 AM_INIT_AUTOMAKE([gnits] [subdir-objects] [-Wall -Werror])
 AM_PROG_AR
@@ -38,6 +38,7 @@ AC_CHECK_LIB(gdk_pixbuf-2.0,gdk_pixbuf_new_from_resource)
 AC_CHECK_LIB(gtk-3,gtk_bin_get_child)
 AC_CHECK_LIB(sqlite3,sqlite3_finalize)
 AC_CHECK_LIB(curl,curl_easy_init)
+AC_CHECK_LIB(pthread,pthread_create)
 AC_CHECK_LIB(webkit2gtk-4.0,webkit_web_view_set_settings)
 AC_CHECK_LIB(xml2,xmlCleanupParser)
 

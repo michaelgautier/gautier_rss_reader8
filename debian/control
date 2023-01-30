@@ -1,0 +1,17 @@
+Source: gautierrss
+Maintainer: michaelgautier <michaelgautier@michaelgautier.github.io>
+Section: misc
+Priority: optional
+Standards-Version: 4.6.2.0
+Build-Depends: debhelper (>= 13)
+
+Package: gautierrss
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Shows Internet feeds in a clean and obvious way
+ You can add new feeds or purge those you no longer need. 
+ The program uses a native code UI that runs smooth with no bloat.
+ NOTE:
+ - Feed providers prefer their site accessed no earlier than once per hour.
+ - The program respects those conditions by default.
+ 
