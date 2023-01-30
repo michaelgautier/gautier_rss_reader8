@@ -1,3 +1,5 @@
 autom4te.cache
 config.h.in~
 debian/.debhelper
+autoscan.log
+configure~

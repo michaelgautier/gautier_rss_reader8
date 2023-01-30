@@ -41,29 +41,29 @@ NOTE:
 make %_smp_mflags -j1
 %install
 %make_install %_smp_mflags -j1
-desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ %{_builddir}/%{name}-%{version}/desktop/newsreader.desktop
-desktop-file-validate %{_builddir}/%{name}-%{version}/desktop/newsreader.desktop
-appstream-util validate-relax --nonet %{_builddir}/%{name}-%{version}/desktop/newsreader.appdata.xml
+desktop-file-install --dir=%{buildroot}%{_datadir}/applications/ %{_builddir}/%{name}-%{version}/desktop/gautierrss.desktop
+desktop-file-validate %{_builddir}/%{name}-%{version}/desktop/gautierrss.desktop
+appstream-util validate-relax --nonet %{_builddir}/%{name}-%{version}/desktop/gautierrss.appdata.xml
 %clean
 %files
 %license LICENSE
 %{_bindir}/%{name}
 %{_bindir}/newsdownld
 %{_bindir}/rss_io_test
-%{_datadir}/applications/newsreader.desktop
-%{_datadir}/icons/HighContrast/16x16/apps/newsreader.png
-%{_datadir}/icons/HighContrast/22x22/apps/newsreader.png
-%{_datadir}/icons/HighContrast/24x24/apps/newsreader.png
-%{_datadir}/icons/HighContrast/256x256/apps/newsreader.png
-%{_datadir}/icons/HighContrast/32x32/apps/newsreader.png
-%{_datadir}/icons/HighContrast/48x48/apps/newsreader.png
-%{_datadir}/icons/hicolor/128x128/apps/newsreader.png
-%{_datadir}/icons/hicolor/16x16/apps/newsreader.png
-%{_datadir}/icons/hicolor/32x32/apps/newsreader.png
-%{_datadir}/icons/hicolor/48x48/apps/newsreader.png
-%{_datadir}/icons/hicolor/64x64/apps/newsreader.png
-%{_datadir}/pixmaps/newsreader.xpm
-%{_datadir}/desktop/newsreader.appdata.xml
+%{_datadir}/applications/gautierrss.desktop
+%{_datadir}/icons/HighContrast/16x16/apps/gautierrss.png
+%{_datadir}/icons/HighContrast/22x22/apps/gautierrss.png
+%{_datadir}/icons/HighContrast/24x24/apps/gautierrss.png
+%{_datadir}/icons/HighContrast/256x256/apps/gautierrss.png
+%{_datadir}/icons/HighContrast/32x32/apps/gautierrss.png
+%{_datadir}/icons/HighContrast/48x48/apps/gautierrss.png
+%{_datadir}/icons/hicolor/128x128/apps/gautierrss.png
+%{_datadir}/icons/hicolor/16x16/apps/gautierrss.png
+%{_datadir}/icons/hicolor/32x32/apps/gautierrss.png
+%{_datadir}/icons/hicolor/48x48/apps/gautierrss.png
+%{_datadir}/icons/hicolor/64x64/apps/gautierrss.png
+%{_datadir}/pixmaps/gautierrss.xpm
+%{_datadir}/desktop/gautierrss.appdata.xml
 
 %changelog
 * Mon Jan 16 2023 Michael Gautier <michaelgautier.wordpress.com> - 8.8.0
