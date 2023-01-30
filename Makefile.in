@@ -99,26 +99,24 @@ am__aclocal_m4_deps = $(top_srcdir)/m4/libtool.m4 \
 am__configure_deps = $(am__aclocal_m4_deps) $(CONFIGURE_DEPENDENCIES) \
 	$(ACLOCAL_M4)
 DIST_COMMON = $(srcdir)/Makefile.am $(top_srcdir)/configure \
-	$(am__configure_deps) $(dist_appdata1_DATA) \
-	$(dist_appdata2_DATA) $(dist_iconC1_DATA) $(dist_iconC2_DATA) \
-	$(dist_iconC3_DATA) $(dist_iconC4_DATA) $(dist_iconC5_DATA) \
-	$(dist_iconH1_DATA) $(dist_iconH2_DATA) $(dist_iconH3_DATA) \
-	$(dist_iconH4_DATA) $(dist_iconH5_DATA) $(dist_iconH6_DATA) \
-	$(dist_pixmap_DATA) $(am__DIST_COMMON)
+	$(am__configure_deps) $(dist_appdata_DATA) $(dist_iconC1_DATA) \
+	$(dist_iconC2_DATA) $(dist_iconC3_DATA) $(dist_iconC4_DATA) \
+	$(dist_iconC5_DATA) $(dist_iconH1_DATA) $(dist_iconH2_DATA) \
+	$(dist_iconH3_DATA) $(dist_iconH4_DATA) $(dist_iconH5_DATA) \
+	$(dist_iconH6_DATA) $(dist_pixmap_DATA) $(am__DIST_COMMON)
 am__CONFIG_DISTCLEAN_FILES = config.status config.cache config.log \
  configure.lineno config.status.lineno
 mkinstalldirs = $(install_sh) -d
 CONFIG_HEADER = config.h
 CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
-am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdata1dir)" \
-	"$(DESTDIR)$(appdata2dir)" "$(DESTDIR)$(iconC1dir)" \
-	"$(DESTDIR)$(iconC2dir)" "$(DESTDIR)$(iconC3dir)" \
-	"$(DESTDIR)$(iconC4dir)" "$(DESTDIR)$(iconC5dir)" \
-	"$(DESTDIR)$(iconH1dir)" "$(DESTDIR)$(iconH2dir)" \
-	"$(DESTDIR)$(iconH3dir)" "$(DESTDIR)$(iconH4dir)" \
-	"$(DESTDIR)$(iconH5dir)" "$(DESTDIR)$(iconH6dir)" \
-	"$(DESTDIR)$(pixmapdir)"
+am__installdirs = "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdatadir)" \
+	"$(DESTDIR)$(iconC1dir)" "$(DESTDIR)$(iconC2dir)" \
+	"$(DESTDIR)$(iconC3dir)" "$(DESTDIR)$(iconC4dir)" \
+	"$(DESTDIR)$(iconC5dir)" "$(DESTDIR)$(iconH1dir)" \
+	"$(DESTDIR)$(iconH2dir)" "$(DESTDIR)$(iconH3dir)" \
+	"$(DESTDIR)$(iconH4dir)" "$(DESTDIR)$(iconH5dir)" \
+	"$(DESTDIR)$(iconH6dir)" "$(DESTDIR)$(pixmapdir)"
 PROGRAMS = $(bin_PROGRAMS)
 am__dirstamp = $(am__leading_dot)dirstamp
 am_gautierrss_OBJECTS =  \
@@ -292,11 +290,11 @@ am__uninstall_files_from_dir = { \
     || { echo " ( cd '$$dir' && rm -f" $$files ")"; \
          $(am__cd) "$$dir" && rm -f $$files; }; \
   }
-DATA = $(dist_appdata1_DATA) $(dist_appdata2_DATA) $(dist_iconC1_DATA) \
-	$(dist_iconC2_DATA) $(dist_iconC3_DATA) $(dist_iconC4_DATA) \
-	$(dist_iconC5_DATA) $(dist_iconH1_DATA) $(dist_iconH2_DATA) \
-	$(dist_iconH3_DATA) $(dist_iconH4_DATA) $(dist_iconH5_DATA) \
-	$(dist_iconH6_DATA) $(dist_pixmap_DATA)
+DATA = $(dist_appdata_DATA) $(dist_iconC1_DATA) $(dist_iconC2_DATA) \
+	$(dist_iconC3_DATA) $(dist_iconC4_DATA) $(dist_iconC5_DATA) \
+	$(dist_iconH1_DATA) $(dist_iconH2_DATA) $(dist_iconH3_DATA) \
+	$(dist_iconH4_DATA) $(dist_iconH5_DATA) $(dist_iconH6_DATA) \
+	$(dist_pixmap_DATA)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP) \
 	config.h.in
 # Read a list of newline-separated strings from the standard input,
@@ -488,10 +486,8 @@ iconC5dir = $(datadir)/icons/hicolor/128x128/apps/
 dist_iconC5_DATA = desktop/icons/hicolor/128x128/apps/gautierrss.png
 pixmapdir = $(datadir)/pixmaps/gautierrss.xpm
 dist_pixmap_DATA = desktop/pixmaps/gautierrss.xpm
-appdata1dir = ${datadir}/desktop/
-dist_appdata1_DATA = desktop/gautierrss.appdata.xml
-appdata2dir = ${datadir}/metainfo/
-dist_appdata2_DATA = desktop/gautierrss.appdata.xml
+appdatadir = ${datadir}/desktop/
+dist_appdata_DATA = desktop/gautierrss.appdata.xml
 
 #############
 #############  News Downloader //////////////////////////////////////////
@@ -1459,48 +1455,27 @@ clean-libtool:
 
 distclean-libtool:
 	-rm -f libtool config.lt
-install-dist_appdata1DATA: $(dist_appdata1_DATA)
+install-dist_appdataDATA: $(dist_appdata_DATA)
 	@$(NORMAL_INSTALL)
-	@list='$(dist_appdata1_DATA)'; test -n "$(appdata1dir)" || list=; \
+	@list='$(dist_appdata_DATA)'; test -n "$(appdatadir)" || list=; \
 	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(appdata1dir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(appdata1dir)" || exit 1; \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(appdatadir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(appdatadir)" || exit 1; \
 	fi; \
 	for p in $$list; do \
 	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
 	  echo "$$d$$p"; \
 	done | $(am__base_list) | \
 	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(appdata1dir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(appdata1dir)" || exit $$?; \
+	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(appdatadir)'"; \
+	  $(INSTALL_DATA) $$files "$(DESTDIR)$(appdatadir)" || exit $$?; \
 	done
 
-uninstall-dist_appdata1DATA:
+uninstall-dist_appdataDATA:
 	@$(NORMAL_UNINSTALL)
-	@list='$(dist_appdata1_DATA)'; test -n "$(appdata1dir)" || list=; \
+	@list='$(dist_appdata_DATA)'; test -n "$(appdatadir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(appdata1dir)'; $(am__uninstall_files_from_dir)
-install-dist_appdata2DATA: $(dist_appdata2_DATA)
-	@$(NORMAL_INSTALL)
-	@list='$(dist_appdata2_DATA)'; test -n "$(appdata2dir)" || list=; \
-	if test -n "$$list"; then \
-	  echo " $(MKDIR_P) '$(DESTDIR)$(appdata2dir)'"; \
-	  $(MKDIR_P) "$(DESTDIR)$(appdata2dir)" || exit 1; \
-	fi; \
-	for p in $$list; do \
-	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
-	  echo "$$d$$p"; \
-	done | $(am__base_list) | \
-	while read files; do \
-	  echo " $(INSTALL_DATA) $$files '$(DESTDIR)$(appdata2dir)'"; \
-	  $(INSTALL_DATA) $$files "$(DESTDIR)$(appdata2dir)" || exit $$?; \
-	done
-
-uninstall-dist_appdata2DATA:
-	@$(NORMAL_UNINSTALL)
-	@list='$(dist_appdata2_DATA)'; test -n "$(appdata2dir)" || list=; \
-	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
-	dir='$(DESTDIR)$(appdata2dir)'; $(am__uninstall_files_from_dir)
+	dir='$(DESTDIR)$(appdatadir)'; $(am__uninstall_files_from_dir)
 install-dist_iconC1DATA: $(dist_iconC1_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(dist_iconC1_DATA)'; test -n "$(iconC1dir)" || list=; \
@@ -1994,7 +1969,7 @@ check-am: all-am
 check: check-am
 all-am: Makefile $(PROGRAMS) $(DATA) config.h
 installdirs:
-	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdata1dir)" "$(DESTDIR)$(appdata2dir)" "$(DESTDIR)$(iconC1dir)" "$(DESTDIR)$(iconC2dir)" "$(DESTDIR)$(iconC3dir)" "$(DESTDIR)$(iconC4dir)" "$(DESTDIR)$(iconC5dir)" "$(DESTDIR)$(iconH1dir)" "$(DESTDIR)$(iconH2dir)" "$(DESTDIR)$(iconH3dir)" "$(DESTDIR)$(iconH4dir)" "$(DESTDIR)$(iconH5dir)" "$(DESTDIR)$(iconH6dir)" "$(DESTDIR)$(pixmapdir)"; do \
+	for dir in "$(DESTDIR)$(bindir)" "$(DESTDIR)$(appdatadir)" "$(DESTDIR)$(iconC1dir)" "$(DESTDIR)$(iconC2dir)" "$(DESTDIR)$(iconC3dir)" "$(DESTDIR)$(iconC4dir)" "$(DESTDIR)$(iconC5dir)" "$(DESTDIR)$(iconH1dir)" "$(DESTDIR)$(iconH2dir)" "$(DESTDIR)$(iconH3dir)" "$(DESTDIR)$(iconH4dir)" "$(DESTDIR)$(iconH5dir)" "$(DESTDIR)$(iconH6dir)" "$(DESTDIR)$(pixmapdir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: install-am
@@ -2104,13 +2079,13 @@ info: info-am
 
 info-am:
 
-install-data-am: install-dist_appdata1DATA install-dist_appdata2DATA \
-	install-dist_iconC1DATA install-dist_iconC2DATA \
-	install-dist_iconC3DATA install-dist_iconC4DATA \
-	install-dist_iconC5DATA install-dist_iconH1DATA \
-	install-dist_iconH2DATA install-dist_iconH3DATA \
-	install-dist_iconH4DATA install-dist_iconH5DATA \
-	install-dist_iconH6DATA install-dist_pixmapDATA
+install-data-am: install-dist_appdataDATA install-dist_iconC1DATA \
+	install-dist_iconC2DATA install-dist_iconC3DATA \
+	install-dist_iconC4DATA install-dist_iconC5DATA \
+	install-dist_iconH1DATA install-dist_iconH2DATA \
+	install-dist_iconH3DATA install-dist_iconH4DATA \
+	install-dist_iconH5DATA install-dist_iconH6DATA \
+	install-dist_pixmapDATA
 
 install-dvi: install-dvi-am
 
@@ -2192,14 +2167,13 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-binPROGRAMS uninstall-dist_appdata1DATA \
-	uninstall-dist_appdata2DATA uninstall-dist_iconC1DATA \
-	uninstall-dist_iconC2DATA uninstall-dist_iconC3DATA \
-	uninstall-dist_iconC4DATA uninstall-dist_iconC5DATA \
-	uninstall-dist_iconH1DATA uninstall-dist_iconH2DATA \
-	uninstall-dist_iconH3DATA uninstall-dist_iconH4DATA \
-	uninstall-dist_iconH5DATA uninstall-dist_iconH6DATA \
-	uninstall-dist_pixmapDATA
+uninstall-am: uninstall-binPROGRAMS uninstall-dist_appdataDATA \
+	uninstall-dist_iconC1DATA uninstall-dist_iconC2DATA \
+	uninstall-dist_iconC3DATA uninstall-dist_iconC4DATA \
+	uninstall-dist_iconC5DATA uninstall-dist_iconH1DATA \
+	uninstall-dist_iconH2DATA uninstall-dist_iconH3DATA \
+	uninstall-dist_iconH4DATA uninstall-dist_iconH5DATA \
+	uninstall-dist_iconH6DATA uninstall-dist_pixmapDATA
 
 .MAKE: all install-am install-strip
 
@@ -2212,23 +2186,22 @@ uninstall-am: uninstall-binPROGRAMS uninstall-dist_appdata1DATA \
 	distclean-libtool distclean-tags distcleancheck distdir \
 	distuninstallcheck dvi dvi-am html html-am info info-am \
 	install install-am install-binPROGRAMS install-data \
-	install-data-am install-dist_appdata1DATA \
-	install-dist_appdata2DATA install-dist_iconC1DATA \
-	install-dist_iconC2DATA install-dist_iconC3DATA \
-	install-dist_iconC4DATA install-dist_iconC5DATA \
-	install-dist_iconH1DATA install-dist_iconH2DATA \
-	install-dist_iconH3DATA install-dist_iconH4DATA \
-	install-dist_iconH5DATA install-dist_iconH6DATA \
-	install-dist_pixmapDATA install-dvi install-dvi-am \
-	install-exec install-exec-am install-html install-html-am \
-	install-info install-info-am install-man install-pdf \
-	install-pdf-am install-ps install-ps-am install-strip \
-	installcheck installcheck-am installcheck-binPROGRAMS \
-	installdirs maintainer-clean maintainer-clean-generic \
-	mostlyclean mostlyclean-compile mostlyclean-generic \
-	mostlyclean-libtool pdf pdf-am ps ps-am tags tags-am uninstall \
-	uninstall-am uninstall-binPROGRAMS uninstall-dist_appdata1DATA \
-	uninstall-dist_appdata2DATA uninstall-dist_iconC1DATA \
+	install-data-am install-dist_appdataDATA \
+	install-dist_iconC1DATA install-dist_iconC2DATA \
+	install-dist_iconC3DATA install-dist_iconC4DATA \
+	install-dist_iconC5DATA install-dist_iconH1DATA \
+	install-dist_iconH2DATA install-dist_iconH3DATA \
+	install-dist_iconH4DATA install-dist_iconH5DATA \
+	install-dist_iconH6DATA install-dist_pixmapDATA install-dvi \
+	install-dvi-am install-exec install-exec-am install-html \
+	install-html-am install-info install-info-am install-man \
+	install-pdf install-pdf-am install-ps install-ps-am \
+	install-strip installcheck installcheck-am \
+	installcheck-binPROGRAMS installdirs maintainer-clean \
+	maintainer-clean-generic mostlyclean mostlyclean-compile \
+	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
+	tags tags-am uninstall uninstall-am uninstall-binPROGRAMS \
+	uninstall-dist_appdataDATA uninstall-dist_iconC1DATA \
 	uninstall-dist_iconC2DATA uninstall-dist_iconC3DATA \
 	uninstall-dist_iconC4DATA uninstall-dist_iconC5DATA \
 	uninstall-dist_iconH1DATA uninstall-dist_iconH2DATA \
