@@ -1,10 +1,11 @@
 [Desktop Entry]
-Version=1.1
+Version=1.0
 Type=Application
 Name=Gautier RSS
+GenericName=News Reader
 Comment=Shows RSS/Atom feeds in a simple and clean window
 TryExec=gautierrss
-Exec=gautierrss
+Exec=/usr/bin/gautierrss
 Icon=gautierrss
-MimeType=image/x-gautierrss;
-Categories=Network;GTK;News;
+Categories=Network;News;GTK;
+Terminal=false

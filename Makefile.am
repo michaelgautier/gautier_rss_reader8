@@ -10,46 +10,50 @@ VPATH = @srcdir@
 bin_PROGRAMS = newsdownld rss_io_test gautierrss
 
 iconH1dir = $(datadir)/icons/HighContrast/16x16/apps/
-dist_iconH1_DATA = desktop/icons/gautierrss.png
+dist_iconH1_DATA = desktop/icons/HighContrast/16x16/apps/gautierrss.png
 
-iconH2dir = $(datadir)/icons/HighContrast/16x16/apps/
-dist_iconH2_DATA = desktop/icons/gautierrss.png
+iconH2dir = $(datadir)/icons/HighContrast/22x22/apps/
+dist_iconH2_DATA = desktop/icons/HighContrast/22x22/apps/gautierrss.png
 
-iconH3dir = $(datadir)/icons/HighContrast/22x22/apps/
-dist_iconH3_DATA = desktop/icons/gautierrss.png
+iconH3dir = $(datadir)/icons/HighContrast/24x24/apps/
+dist_iconH3_DATA = desktop/icons/HighContrast/24x24/apps/gautierrss.png
 
-iconH4dir = $(datadir)/icons/HighContrast/24x24/apps/
-dist_iconH4_DATA = desktop/icons/gautierrss.png
+iconH4dir = $(datadir)/icons/HighContrast/32x32/apps/
+dist_iconH4_DATA = desktop/icons/HighContrast/32x32/apps/gautierrss.png
 
-iconH5dir = $(datadir)/icons/HighContrast/256x256/apps/
-dist_iconH5_DATA = desktop/icons/gautierrss.png
+iconH5dir = $(datadir)/icons/HighContrast/48x48/apps/
+dist_iconH5_DATA = desktop/icons/HighContrast/48x48/apps/gautierrss.png
 
-iconH6dir = $(datadir)/icons/HighContrast/32x32/apps/
-dist_iconH6_DATA = desktop/icons/gautierrss.png
+iconH6dir = $(datadir)/icons/HighContrast/256x256/apps/
+dist_iconH6_DATA = desktop/icons/HighContrast/256x256/apps/gautierrss.png
 
-iconH7dir = $(datadir)/icons/HighContrast/48x48/apps/
-dist_iconH7_DATA = desktop/icons/gautierrss.png
+iconC1dir = $(datadir)/icons/hicolor/16x16/apps/
+dist_iconC1_DATA = desktop/icons/hicolor/16x16/apps/gautierrss.png
 
-iconC1dir = $(datadir)/icons/hicolor/128x128/apps/
-dist_iconC1_DATA = desktop/icons/gautierrss.png
+iconC2dir = $(datadir)/icons/hicolor/32x32/apps/
+dist_iconC2_DATA = desktop/icons/hicolor/32x32/apps/gautierrss.png
 
-iconC2dir = $(datadir)/icons/hicolor/16x16/apps/
-dist_iconC2_DATA = desktop/icons/gautierrss.png
+iconC3dir = $(datadir)/icons/hicolor/48x48/apps/
+dist_iconC3_DATA = desktop/icons/hicolor/48x48/apps/gautierrss.png
 
-iconC3dir = $(datadir)/icons/hicolor/32x32/apps/
-dist_iconC3_DATA = desktop/icons/gautierrss.png
+iconC4dir = $(datadir)/icons/hicolor/64x64/apps/
+dist_iconC4_DATA = desktop/icons/hicolor/64x64/apps/gautierrss.png
 
-iconC4dir = $(datadir)/icons/hicolor/48x48/apps/
-dist_iconC4_DATA = desktop/icons/gautierrss.png
-
-iconC5dir = $(datadir)/icons/hicolor/64x64/apps/
-dist_iconC5_DATA = desktop/icons/gautierrss.png
+iconC5dir = $(datadir)/icons/hicolor/128x128/apps/
+dist_iconC5_DATA = desktop/icons/hicolor/128x128/apps/gautierrss.png
 
 pixmapdir = $(datadir)/pixmaps/gautierrss.xpm
 dist_pixmap_DATA = desktop/pixmaps/gautierrss.xpm
 
-appdatadir = ${datadir}/desktop/
-dist_appdata_DATA = desktop/gautierrss.appdata.xml
+appdata1dir = ${datadir}/desktop/
+dist_appdata1_DATA = desktop/gautierrss.appdata.xml
+
+appdata2dir = ${datadir}/metainfo/
+dist_appdata2_DATA = desktop/gautierrss.appdata.xml
+
+#Majority of this file was put together in Fedora 37 environment.
+#Important ... Debian related insight
+#https://packaging.ubuntu.com/html/debian-dir-overview.html
 
 #############
 #############  DEPENDENT OBJECTS //////////////////////////////////////////

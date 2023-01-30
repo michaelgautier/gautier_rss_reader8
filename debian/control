@@ -2,7 +2,7 @@ Source: gautierrss
 Maintainer: michaelgautier <michaelgautier@michaelgautier.github.io>
 Section: misc
 Priority: optional
-Standards-Version: 4.6.2.0
+Standards-Version: 4.5.1.0
 Build-Depends: debhelper (>= 13)
 
 Package: gautierrss
