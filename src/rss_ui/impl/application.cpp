@@ -24,6 +24,7 @@ Author: Michael Gautier <michaelgautier.wordpress.com>
 #include "rss_ui/app_win/app_win.hpp"
 
 #include <gio/gio.h>
+#include <sqlite3.h>
 
 /*
 	GNU C Library extensions
@@ -61,16 +62,16 @@ namespace {
 	user_home_directory = "";
 
 	const std::string
-	root_user_data_directory = ".local/share/newsreader/";
+	root_user_data_directory = ".local/share/gautierrss/";
 
 	const std::string
-	app_name = "michael.gautier.rss.v7";
+	app_name = "michael.gautier.rss.v8";
+
+	mode_t
+	get_read_write_filemask();
 
 	int
 	create_user_root_directory();
-
-	int
-	create_user_data_directory();
 
 	int
 	create_directory (const std::string directory_path);
@@ -151,7 +152,7 @@ namespace {
 	void
 	load_application_icon()
 	{
-		const std::string app_icon_resource_path = "/newsreader/app_icon.png";
+		const std::string app_icon_resource_path = "/gautierrss/app_icon.png";
 
 		GdkPixbuf* application_icon_pixbuf = gdk_pixbuf_new_from_resource (app_icon_resource_path.data(), nullptr);
 
@@ -215,7 +216,7 @@ gautier_rss_ui_app::activate (GtkApplication* application, gpointer user_data)
 void
 gautier_rss_ui_app::set_css_class (GtkWidget* widget, const std::string css_class_name)
 {
-	const std::string css_style_resource_path = "/newsreader/app_style.css";
+	const std::string css_style_resource_path = "/gautierrss/app_style.css";
 
 	GtkCssProvider* css_provider = gtk_css_provider_new();
 
@@ -290,7 +291,7 @@ gautier_rss_ui_app::get_db_file_name()
 std::string
 gautier_rss_ui_app::get_application_name()
 {
-	return "RSS Reader";
+	return "Gautier RSS Reader";
 }
 
 /*
@@ -328,8 +329,8 @@ main (int argc, char** argv)
 {
 	const std::string program_time_started =  gautier_rss_util::get_current_date_time_utc();
 
-	std::cout << "Gautier RSS Reader 7, compiled under C++ std " <<  __cplusplus << "\n";
-	std::cout << "Originally created by Michael Gautier, https://michaelgautier.github.io/gautier_rss_reader7/ \n";
+	std::cout << "Gautier RSS Reader 8, compiled under C++ std " <<  __cplusplus << "\n";
+	std::cout << "Originally created by Michael Gautier, https://michaelgautier.github.io/gautier_rss_reader8/ \n";
 	std::cout << "This is free software under LGPLv2; see the source for copying conditions.\n";
 	std::cout << "NO warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n";
 	std::cout << "--------------------------------------------------------------------------------\n";
@@ -370,9 +371,15 @@ main (int argc, char** argv)
 	if (status == 0) {
 		const std::string db_file_name = ns_ui_app::get_db_file_name();
 
-		gautier_rss_data_write::initialize_db (db_file_name);
+		int sqlite_init_code = sqlite3_initialize();
 
-		gautier_rss_data_write::remove_expired_articles (db_file_name);
+		if (sqlite_init_code == SQLITE_OK) {
+			gautier_rss_data_write::initialize_db (db_file_name);
+
+			gautier_rss_data_write::remove_expired_articles (db_file_name);
+		} else {
+			std::cout << "SQLite not initialized\n";
+		}
 	}
 
 	/*
@@ -416,6 +423,8 @@ main (int argc, char** argv)
 	std::cout << "--------------------------------------------------------------------------------\n";
 	std::cout << "--------------------------------------------------------------------------------\n";
 	std::cout << "Program ended " << program_time_ended_precleanup << ".\n";
+
+	sqlite3_shutdown();
 
 	return status;
 }
