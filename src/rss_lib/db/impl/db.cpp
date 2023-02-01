@@ -24,12 +24,17 @@ gautier_rss_database::open_db (const std::string db_file_name, sqlite3** db)
 {
 	bool success = false;
 
-	const int options = (SQLITE_OPEN_FULLMUTEX | SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE);
+	const int options = (SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_FULLMUTEX);
 
 	const int open_result = sqlite3_open_v2 (db_file_name.data(), db, options, nullptr);
 
+	sqlite3_extended_result_codes (*db, 1);
+
 	if (open_result == SQLITE_OK) {
 		success = true;
+	} else {
+		std::cout << __FILE__ << " " << __func__ << " line (" << __LINE__ << ") Db Open Result: " << open_result <<
+		          "\n\n";
 	}
 
 	return success;
@@ -84,6 +89,11 @@ gautier_rss_database::process_sql_simple (sqlite3** db, const std::string sql_te
 
 	sqlite3_exec (*db, sql_text.data(), nullptr, nullptr, &error_message);
 
+	if (error_message) {
+		std::cout << __FILE__ << " " << __func__ << " line (" << __LINE__ << ") SQL Result: " << error_message <<
+		          "\n\n";
+	}
+
 	return;
 }
 
@@ -93,7 +103,12 @@ gautier_rss_database::process_sql (sqlite3** db, const std::string sql_text,
 {
 	sqlite3_stmt* sql_statement;
 
-	sqlite3_prepare_v2 (*db,  sql_text.data(),  -1,  &sql_statement,  nullptr);
+	int prepare_result = sqlite3_prepare_v2 (*db,  sql_text.data(),  -1,  &sql_statement,  nullptr);
+
+	if (prepare_result != SQLITE_OK) {
+		std::cout << __FILE__ << " " << __func__ << " line (" << __LINE__ << ") SQL Prepare Result: " << prepare_result
+		          << "\n\n";
+	}
 
 	int i = 0;
 
