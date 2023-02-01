@@ -57,16 +57,15 @@ CFLAGS="${CFLAGS} ${ACFLAGS}"
 CPPFLAGS="${CPPFLAGS} ${ACFLAGS}"
 
 GTKRESCFILE="${srcdir}/src/rss_ui/app_resources.xml"
-GTKRESCFILE_CSS="${srcdir}/src/rss_ui/app_style.css"
 GTKRESCFILE_C="${srcdir}/src/rss_ui/app_resources.c"
 GTKRESCFILE_H="${srcdir}/src/rss_ui/app_resources.h"
 
-if [ ! test -f "$GTKRESCFILE_H" ] || [ ! test -f "$GTKRESCFILE_C" ]
-then
-	glib-compile-resources --generate-source --sourcedir=${srcdir}/src/rss_ui/ "${GTKRESCFILE}"
-	glib-compile-resources --generate-header --sourcedir=${srcdir}/src/rss_ui/ "${GTKRESCFILE}"
-	glib-compile-resources --generate-dependencies --sourcedir=${srcdir}/src/rss_ui/ "${GTKRESCFILE}"
-fi
+rm -rf "${GTKRESCFILE_C}"
+rm -rf "${GTKRESCFILE_H}"
+
+glib-compile-resources --generate-source --sourcedir=${srcdir}/src/rss_ui/ "${GTKRESCFILE}"
+glib-compile-resources --generate-header --sourcedir=${srcdir}/src/rss_ui/ "${GTKRESCFILE}"
+glib-compile-resources --generate-dependencies --sourcedir=${srcdir}/src/rss_ui/ "${GTKRESCFILE}"
 
 AC_CONFIG_FILES([Makefile])
 AC_OUTPUT
