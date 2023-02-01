@@ -548,7 +548,7 @@ namespace {
 			gautier_rss_win_rss_manage::set_feed_model (feed_index);
 			gautier_rss_win_rss_manage::set_modification_callback (synchronize_feeds_to_configuration);
 
-			gautier_rss_win_rss_manage::show_dialog (nullptr, win, window_width, window_height);
+			gautier_rss_win_rss_manage::show_dialog (win, window_width, window_height);
 		}
 
 		return;

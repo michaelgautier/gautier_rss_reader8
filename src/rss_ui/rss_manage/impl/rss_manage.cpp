@@ -126,7 +126,7 @@ namespace {
 	finalize_rss_modifications();
 
 	void
-	create_window (GtkApplication* app, GtkWindow* parent, const int window_width, const int window_height);
+	create_window (GtkWindow* parent, const int window_width, const int window_height);
 
 	void
 	layout_rss_feed_entry_area (GtkWidget* feed_entry_layout_row1, GtkWidget* feed_entry_layout_row2,
@@ -206,12 +206,16 @@ namespace {
 	                         const std::string feed_url);
 
 	void
-	create_window (GtkApplication* app, GtkWindow* parent, const int window_width, const int window_height)
+	create_window (GtkWindow* parent, const int window_width, const int window_height)
 	{
 		/*
 			Operating in a valid instance of a GTK application.
 		*/
-		if (app && parent) {
+		if (parent == nullptr) {
+			std::cout << "RSS Management UI Initialized parent window is NULL\n";
+		}
+
+		if (parent) {
 			std::cout << "RSS Management UI Initialized: " << gautier_rss_util::get_current_date_time_utc() << "\n";
 		} else {
 			std::cout << "ERROR Initializing RSS Management UI (no application or parent window)\n";
@@ -1246,13 +1250,13 @@ gautier_rss_win_rss_manage::set_modification_callback (feed_mod_cb_type* feed_mo
 }
 
 void
-gautier_rss_win_rss_manage::show_dialog (GtkApplication* app, GtkWindow* parent, const int window_width,
+gautier_rss_win_rss_manage::show_dialog (GtkWindow* parent, const int window_width,
         const int window_height)
 {
 	/*
 		RSS Management Window.
 	*/
-	create_window (app, parent, window_width, window_height);
+	create_window (parent, window_width, window_height);
 
 	/*
 		Vertical layout for the window's contents.
