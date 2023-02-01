@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="newsreader">
+  <gresource prefix="gautierrss">
     <file>app_style.css</file>
     <file preprocess="to-pixdata">app_icon.png</file>
   </gresource>

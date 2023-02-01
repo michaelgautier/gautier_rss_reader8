@@ -3,3 +3,5 @@ config.h.in~
 debian/.debhelper
 autoscan.log
 configure~
+app_resources.c
+app_resources.h
