@@ -172,7 +172,7 @@ gautier_rss_ui_app::create()
 
 		Run the user interface.
 	*/
-	GtkApplication* application = gtk_application_new (app_name.data(), G_APPLICATION_FLAGS_NONE);
+	GtkApplication* application = gtk_application_new (app_name.data(), G_APPLICATION_DEFAULT_FLAGS);
 
 	g_signal_connect (application, "activate", G_CALLBACK (gautier_rss_ui_app::activate), nullptr);
 
