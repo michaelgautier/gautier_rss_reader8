@@ -18814,14 +18814,14 @@ then :
 
 fi
 
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for webkit_web_view_set_settings in -lwebkit2gtk-4.0" >&5
-printf %s "checking for webkit_web_view_set_settings in -lwebkit2gtk-4.0... " >&6; }
-if test ${ac_cv_lib_webkit2gtk_4_0_webkit_web_view_set_settings+y}
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking for webkit_web_view_set_settings in -lwebkit2gtk-4.1" >&5
+printf %s "checking for webkit_web_view_set_settings in -lwebkit2gtk-4.1... " >&6; }
+if test ${ac_cv_lib_webkit2gtk_4_1_webkit_web_view_set_settings+y}
 then :
   printf %s "(cached) " >&6
 else $as_nop
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lwebkit2gtk-4.0  $LIBS"
+LIBS="-lwebkit2gtk-4.1  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -18838,21 +18838,21 @@ return conftest::webkit_web_view_set_settings ();
 _ACEOF
 if ac_fn_cxx_try_link "$LINENO"
 then :
-  ac_cv_lib_webkit2gtk_4_0_webkit_web_view_set_settings=yes
+  ac_cv_lib_webkit2gtk_4_1_webkit_web_view_set_settings=yes
 else $as_nop
-  ac_cv_lib_webkit2gtk_4_0_webkit_web_view_set_settings=no
+  ac_cv_lib_webkit2gtk_4_1_webkit_web_view_set_settings=no
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.beam \
     conftest$ac_exeext conftest.$ac_ext
 LIBS=$ac_check_lib_save_LIBS
 fi
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_webkit2gtk_4_0_webkit_web_view_set_settings" >&5
-printf "%s\n" "$ac_cv_lib_webkit2gtk_4_0_webkit_web_view_set_settings" >&6; }
-if test "x$ac_cv_lib_webkit2gtk_4_0_webkit_web_view_set_settings" = xyes
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: $ac_cv_lib_webkit2gtk_4_1_webkit_web_view_set_settings" >&5
+printf "%s\n" "$ac_cv_lib_webkit2gtk_4_1_webkit_web_view_set_settings" >&6; }
+if test "x$ac_cv_lib_webkit2gtk_4_1_webkit_web_view_set_settings" = xyes
 then :
-  printf "%s\n" "#define HAVE_LIBWEBKIT2GTK_4_0 1" >>confdefs.h
+  printf "%s\n" "#define HAVE_LIBWEBKIT2GTK_4_1 1" >>confdefs.h
 
-  LIBS="-lwebkit2gtk-4.0 $LIBS"
+  LIBS="-lwebkit2gtk-4.1 $LIBS"
 
 fi
 
@@ -18907,7 +18907,7 @@ ACFLAGS="${ACFLAGS} `pkg-config gdk-pixbuf-2.0 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config gtk+-3.0 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config sqlite3 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config libcurl --cflags`"
-ACFLAGS="${ACFLAGS} `pkg-config webkit2gtk-4.0 --cflags`"
+ACFLAGS="${ACFLAGS} `pkg-config webkit2gtk-4.1 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config libxml-2.0 --cflags`"
 
 CFLAGS="${CFLAGS} ${ACFLAGS}"

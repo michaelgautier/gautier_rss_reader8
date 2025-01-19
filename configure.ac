@@ -39,7 +39,7 @@ AC_CHECK_LIB(gtk-3,gtk_bin_get_child)
 AC_CHECK_LIB(sqlite3,sqlite3_finalize)
 AC_CHECK_LIB(curl,curl_easy_init)
 AC_CHECK_LIB(pthread,pthread_create)
-AC_CHECK_LIB(webkit2gtk-4.0,webkit_web_view_set_settings)
+AC_CHECK_LIB(webkit2gtk-4.1,webkit_web_view_set_settings)
 AC_CHECK_LIB(xml2,xmlCleanupParser)
 
 #Custom Functionality
@@ -50,7 +50,7 @@ ACFLAGS="${ACFLAGS} `pkg-config gdk-pixbuf-2.0 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config gtk+-3.0 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config sqlite3 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config libcurl --cflags`"
-ACFLAGS="${ACFLAGS} `pkg-config webkit2gtk-4.0 --cflags`"
+ACFLAGS="${ACFLAGS} `pkg-config webkit2gtk-4.1 --cflags`"
 ACFLAGS="${ACFLAGS} `pkg-config libxml-2.0 --cflags`"
 
 CFLAGS="${CFLAGS} ${ACFLAGS}"
